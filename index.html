@@ -61,10 +61,12 @@
   <!-- Dynamic Canvas Background for Upward Arrow Particle Engine -->
   <canvas id="arrow-canvas"></canvas>
 
-  <!-- Ambient Glow Elements -->
-  <div class="glow-sphere sphere-1"></div>
-  <div class="glow-sphere sphere-2"></div>
-  <div class="glow-sphere sphere-3"></div>
+  <!-- Ambient Glow Elements (Contained to prevent viewport overflow) -->
+  <div class="ambient-glow-wrapper" aria-hidden="true">
+    <div class="glow-sphere sphere-1"></div>
+    <div class="glow-sphere sphere-2"></div>
+    <div class="glow-sphere sphere-3"></div>
+  </div>
 
   <!-- Header Navigation -->
   <header id="main-header" class="header-floating">
@@ -191,8 +193,8 @@
             </svg>
           </button>
 
-          <!-- Primary Action CTA Button -->
-          <button class="btn-primary open-consult-modal">
+          <!-- Primary Action CTA Button (Matching Desktop on all devices) -->
+          <button class="btn-primary open-consult-modal nav-cta-btn">
             <span>ابدأ مشروعك</span>
             <svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="7" y1="17" x2="17" y2="7"/>
@@ -201,7 +203,7 @@
           </button>
 
           <!-- Mobile / Quick Menu Trigger -->
-          <button id="mobile-menu-trigger" class="btn-icon" aria-label="فتح القائمة">
+          <button id="mobile-menu-trigger" class="btn-icon hidden-desktop" aria-label="فتح القائمة">
             <svg class="menu-icon-svg" viewBox="0 0 24 24" width="24" height="24">
               <rect x="3" y="5.5" width="18" height="2.2" rx="1.1" fill="#ffffff" class="menu-bar"></rect>
               <rect x="3" y="11" width="18" height="2.2" rx="1.1" fill="#ffffff" class="menu-bar"></rect>
@@ -214,36 +216,147 @@
   </header>
 
   <!-- Mobile Navigation Drawer -->
-  <div id="mobile-drawer" class="mobile-drawer">
+  <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
     <div class="drawer-overlay"></div>
     <div class="drawer-content">
       <div class="drawer-header">
-        <img src="assets/images/logo-transparent.png" alt="شعار مفر" class="logo-img-sm">
-        <button id="close-drawer" class="btn-icon" aria-label="إغلاق القائمة">&times;</button>
+        <a href="#hero" class="drawer-logo" aria-label="الرئيسية - مفر">
+          <img src="assets/images/logo-transparent.png" alt="شعار مفر" class="logo-img-sm">
+        </a>
+        <button id="close-drawer" class="btn-icon drawer-close-btn" aria-label="إغلاق القائمة">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
+
       <div class="drawer-links">
-        <a href="#hero" class="drawer-item">الرئيسية</a>
-        <a href="#about" class="drawer-item">من نحن</a>
+        <a href="#hero" class="drawer-item active">
+          <span>الرئيسية</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </a>
+        <a href="#about" class="drawer-item">
+          <span>من نحن</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </a>
         
+        <!-- Rich 8-Services Accordion Group in Mobile Drawer -->
         <div class="drawer-services-group">
-          <span class="drawer-subtitle">خدماتنا الثمانية:</span>
-          <a href="#services" class="drawer-sublink service-trigger" data-service="uiux">تصميم UI/UX</a>
-          <a href="#services" class="drawer-sublink service-trigger" data-service="seo">تحسين SEO</a>
-          <a href="#services" class="drawer-sublink service-trigger" data-service="graphic">تصميم جرافيك</a>
-          <a href="#services" class="drawer-sublink service-trigger" data-service="motion">موشن جرافيك</a>
-          <a href="#services" class="drawer-sublink service-trigger" data-service="programming">البرمجة والتطوير</a>
-          <a href="#services" class="drawer-sublink service-trigger" data-service="content">صناعة المحتوى</a>
-          <a href="#services" class="drawer-sublink service-trigger" data-service="mediabuyer">ميديا باير</a>
-          <a href="#services" class="drawer-sublink service-trigger" data-service="socialmedia">سوشيال ميديا</a>
+          <div class="drawer-services-header">
+            <span class="drawer-subtitle">خدماتنا التخصصية (8 أقسام):</span>
+          </div>
+          <div class="drawer-services-grid">
+            <a href="#services" class="drawer-service-card service-trigger" data-service="uiux">
+              <div class="drawer-svc-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+              </div>
+              <div class="drawer-svc-text">
+                <span class="d-title">تصميم UI/UX</span>
+                <span class="d-desc">واجهات وتجارب مبتكرة</span>
+              </div>
+            </a>
+
+            <a href="#services" class="drawer-service-card service-trigger" data-service="seo">
+              <div class="drawer-svc-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              <div class="drawer-svc-text">
+                <span class="d-title">تحسين SEO</span>
+                <span class="d-desc">تصدر نتائج جوجل</span>
+              </div>
+            </a>
+
+            <a href="#services" class="drawer-service-card service-trigger" data-service="graphic">
+              <div class="drawer-svc-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="drawer-svc-text">
+                <span class="d-title">تصميم جرافيك</span>
+                <span class="d-desc">هويات بصرية متميزة</span>
+              </div>
+            </a>
+
+            <a href="#services" class="drawer-service-card service-trigger" data-service="motion">
+              <div class="drawer-svc-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="drawer-svc-text">
+                <span class="d-title">موشن جرافيك</span>
+                <span class="d-desc">فيديوهات 2D/3D تفاعلية</span>
+              </div>
+            </a>
+
+            <a href="#services" class="drawer-service-card service-trigger" data-service="programming">
+              <div class="drawer-svc-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div class="drawer-svc-text">
+                <span class="d-title">البرمجة والتطوير</span>
+                <span class="d-desc">متاجر ومنصات سريعة</span>
+              </div>
+            </a>
+
+            <a href="#services" class="drawer-service-card service-trigger" data-service="content">
+              <div class="drawer-svc-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <div class="drawer-svc-text">
+                <span class="d-title">صناعة المحتوى</span>
+                <span class="d-desc">نصوص تسويقية مقنعة</span>
+              </div>
+            </a>
+
+            <a href="#services" class="drawer-service-card service-trigger" data-service="mediabuyer">
+              <div class="drawer-svc-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+              </div>
+              <div class="drawer-svc-text">
+                <span class="d-title">ميديا باير</span>
+                <span class="d-desc">إعلانات بأعلى عائد ROAS</span>
+              </div>
+            </a>
+
+            <a href="#services" class="drawer-service-card service-trigger" data-service="socialmedia">
+              <div class="drawer-svc-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+              </div>
+              <div class="drawer-svc-text">
+                <span class="d-title">سوشيال ميديا</span>
+                <span class="d-desc">إدارة شاملة ونمو مستمر</span>
+              </div>
+            </a>
+          </div>
         </div>
 
-        <a href="#portfolio" class="drawer-item">أعمالنا</a>
-        <a href="#contact" class="drawer-item">تواصل معنا</a>
+        <a href="#portfolio" class="drawer-item">
+          <span>أعمالنا</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </a>
+        <a href="#faq" class="drawer-item">
+          <span>الأسئلة الشائعة</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </a>
+        <a href="#contact" class="drawer-item">
+          <span>تواصل معنا</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </a>
       </div>
+
       <div class="drawer-footer">
-        <button class="btn-primary w-full open-consult-modal">
+        <button class="btn-primary w-full open-consult-modal mb-3">
           <span>ابدأ مشروعك الآن</span>
+          <svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="7" y1="17" x2="17" y2="7"/>
+            <polyline points="7 7 17 7 17 17"/>
+          </svg>
         </button>
+        <a href="https://wa.me/201036076768?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%85%D9%81%D8%B1%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D9%86%D9%85%D9%88%20%D9%84%D8%B1%D9%81%D8%B9%20%D8%A7%D9%84%D9%85%D8%A9%D9%8A%D8%B9%D8%A7%D8%AA" target="_blank" rel="noopener" class="btn-whatsapp w-full">
+          <svg class="wa-icon-sm" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.758.459 3.474 1.33 4.986l-1.413 5.163 5.283-1.385c1.458.796 3.107 1.215 4.787 1.216h.004c5.506 0 9.989-4.478 9.99-9.985 0-2.668-1.039-5.176-2.924-7.062a9.923 9.923 0 0 0-7.067-2.919z"/>
+          </svg>
+          <span>تواصل مباشر واتساب</span>
+        </a>
       </div>
     </div>
   </div>
@@ -260,8 +373,9 @@
           </div>
 
           <h1 class="hero-title kashida-title">
-            مَفَر (MFAR)<br>
-            <span class="highlight-gradient">نجمك حين يضيع الاتجاه</span> لرفع المبيعات وتحقيق النمو الرقمي
+            <span class="brand-name-accent">مَفَر (MFAR)</span><br>
+            <span class="highlight-gradient">نجمك حين يضيع الاتجاه</span><br class="hero-br-desktop">
+            <span class="hero-subtext">لرفع المبيعات وتحقيق النمو الرقمي</span>
           </h1>
 
           <p class="hero-description thmanyah-body">
@@ -884,7 +998,7 @@
               </div>
               <div class="c-detail-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="https://wa.me/201036076768" target="_blank" dir="ltr">+20 10 36076768</a>
+                <a href="https://wa.me/201036076768" target="_blank" dir="ltr" class="phone-link">+20 10 36076768</a>
               </div>
               <div class="c-detail-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -986,7 +1100,7 @@
           <h4 class="footer-heading">التواصل والدعم</h4>
           <ul class="footer-contact">
             <li><span>العنوان: الرياض، المملكة العربية السعودية</span></li>
-            <li><span>الاتصال والواتساب: </span><a href="https://wa.me/201036076768" target="_blank" dir="ltr">+20 10 36076768</a></li>
+            <li><span>الاتصال والواتساب: </span><a href="https://wa.me/201036076768" target="_blank" dir="ltr" class="phone-link">+20 10 36076768</a></li>
             <li><span>البريد الإلكتروني: </span><a href="mailto:info@mfar.sa">info@mfar.sa</a></li>
           </ul>
         </div>

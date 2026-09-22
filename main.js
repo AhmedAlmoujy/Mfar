@@ -148,15 +148,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeDrawerBtn = id('close-drawer');
   const mobileDrawer = id('mobile-drawer');
   const drawerOverlay = document.querySelector('.drawer-overlay');
-  const drawerItems = document.querySelectorAll('.drawer-item, .drawer-sublink');
+  const drawerItems = document.querySelectorAll('.drawer-item, .drawer-sublink, .drawer-service-card');
 
   function openDrawer() {
-    if (mobileDrawer) mobileDrawer.classList.add('active');
+    if (mobileDrawer) {
+      mobileDrawer.classList.add('active');
+      mobileDrawer.setAttribute('aria-hidden', 'false');
+    }
     document.body.style.overflow = 'hidden';
   }
 
   function closeDrawer() {
-    if (mobileDrawer) mobileDrawer.classList.remove('active');
+    if (mobileDrawer) {
+      mobileDrawer.classList.remove('active');
+      mobileDrawer.setAttribute('aria-hidden', 'true');
+    }
     document.body.style.overflow = '';
   }
 
@@ -174,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
           e.preventDefault();
           setTimeout(() => {
             targetSec.scrollIntoView({ behavior: 'smooth' });
-          }, 150);
+          }, 180);
         }
       }
     });
@@ -435,13 +441,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = id('arrow-canvas');
   if (canvas) {
     const ctx = canvas.getContext('2d');
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let width = 0;
+    let height = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
+    function resizeCanvas() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('orientationchange', () => setTimeout(resizeCanvas, 150));
 
     class ArrowParticle {
       constructor(initial = false) {
@@ -450,11 +465,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       reset(initial = false) {
         this.x = Math.random() * width;
-        this.y = initial ? Math.random() * height : height + Math.random() * 60;
-        this.size = Math.random() * 16 + 12;
-        this.speedY = Math.random() * 1.5 + 0.6;
-        this.speedX = Math.random() * 0.4 - 0.2;
-        this.opacity = Math.random() * 0.5 + 0.2;
+        this.y = initial ? Math.random() * height : height + Math.random() * 50;
+        this.size = Math.random() * 16 + 14;
+        this.speedY = Math.random() * 1.4 + 0.6;
+        this.speedX = (Math.random() - 0.48) * 0.4;
+        this.opacity = Math.random() * 0.5 + 0.25;
         this.color = Math.random() > 0.45 ? '#00D2FF' : (Math.random() > 0.5 ? '#0084FF' : '#FF9E00');
       }
 
@@ -462,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.y -= this.speedY;
         this.x += this.speedX;
 
-        if (this.y < -40) {
+        if (this.y < -40 || this.x < -30 || this.x > width + 30) {
           this.reset(false);
         }
       }
@@ -471,13 +486,16 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.save();
         ctx.globalAlpha = this.opacity;
         ctx.fillStyle = this.color;
-        ctx.font = `600 ${this.size}px sans-serif`;
+        ctx.font = `700 ${this.size}px 'Thmanyah', 'Segoe UI', system-ui, -apple-system, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
         ctx.fillText('↗', this.x, this.y);
         ctx.restore();
       }
     }
 
-    const particles = Array.from({ length: 65 }, () => new ArrowParticle(true));
+    const particleCount = window.innerWidth < 768 ? 55 : 80;
+    const particles = Array.from({ length: particleCount }, () => new ArrowParticle(true));
 
     function animateParticles() {
       ctx.clearRect(0, 0, width, height);
