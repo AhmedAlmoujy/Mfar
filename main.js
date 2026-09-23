@@ -1,12 +1,12 @@
 /**
- * MFAR (مَفَر) Digital Growth Agency — Web Application Logic
+ * MFAR (مَفَـــر) Digital Growth Agency — Web Application Logic
  * 8-Service Interactive Engine, Dropdown Navigation, Service Details Modal, Portfolio Filters & Canvas Particles
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // --------------------------------------------------------------------------
-  // 1. Data Store: The 8 Main Services of MFAR (أقسام خدمات مَفَر الثمانية)
+  // 1. Data Store: The 8 Main Services of MFAR (أقسام خدمات مَفَـــر الثمانية)
   // --------------------------------------------------------------------------
   const servicesData = {
     'uiux': {
@@ -113,30 +113,48 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 2. Theme Switcher Toggle (Dark / Light)
+  // 2. Theme Switcher Toggle (Dark / Light with LocalStorage Persistence)
   // --------------------------------------------------------------------------
   const themeToggleBtn = id('theme-toggle');
   const htmlEl = document.documentElement;
   const sunIcon = document.querySelector('.sun-icon');
   const moonIcon = document.querySelector('.moon-icon');
 
+  function applyThemeState(isLight) {
+    if (isLight) {
+      htmlEl.classList.remove('dark');
+      htmlEl.classList.add('light');
+      if (sunIcon && moonIcon) {
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    } else {
+      htmlEl.classList.remove('light');
+      htmlEl.classList.add('dark');
+      if (sunIcon && moonIcon) {
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      }
+    }
+  }
+
+  // Sync theme icon on page load
+  const currentSavedTheme = localStorage.getItem('mfar_theme');
+  if (currentSavedTheme === 'light' || htmlEl.classList.contains('light')) {
+    applyThemeState(true);
+  } else {
+    applyThemeState(false);
+  }
+
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
-      const isDark = htmlEl.classList.contains('dark');
-      if (isDark) {
-        htmlEl.classList.remove('dark');
-        htmlEl.classList.add('light');
-        if (sunIcon && moonIcon) {
-          sunIcon.classList.add('hidden');
-          moonIcon.classList.remove('hidden');
-        }
+      const isDarkNow = htmlEl.classList.contains('dark');
+      if (isDarkNow) {
+        applyThemeState(true);
+        localStorage.setItem('mfar_theme', 'light');
       } else {
-        htmlEl.classList.remove('light');
-        htmlEl.classList.add('dark');
-        if (sunIcon && moonIcon) {
-          sunIcon.classList.remove('hidden');
-          moonIcon.classList.add('hidden');
-        }
+        applyThemeState(false);
+        localStorage.setItem('mfar_theme', 'dark');
       }
     });
   }
@@ -286,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modalOrderBtn) {
     modalOrderBtn.addEventListener('click', () => {
       const serviceName = servicesData[activeServiceKey] ? servicesData[activeServiceKey].title : 'إحدى الخدمات';
-      const waMsg = encodeURIComponent(`مرحباً وكالة مَفَر، أود الاستفسار وطلب خدمة: (${serviceName}).`);
+      const waMsg = encodeURIComponent(`مرحباً شركة مَفَـــر، أود الاستفسار وطلب خدمة: (${serviceName}).`);
       window.open(`https://wa.me/201036076768?text=${waMsg}`, '_blank');
       closeServiceModal();
     });
@@ -317,42 +335,52 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------------------------------
-  // 7. Verified Statistics Counter Animation
+  // 7. Verified Statistics & Hero Banner Counter Animation
   // --------------------------------------------------------------------------
-  const counters = document.querySelectorAll('.counter-num');
-  let animatedStats = false;
+  const counterContainers = document.querySelectorAll('.hero-card-glass, .hero-stats-bar, .hero-section');
+
+  function animateCounter(counter) {
+    if (counter.dataset.animated === 'true') return;
+    counter.dataset.animated = 'true';
+
+    const target = parseFloat(counter.getAttribute('data-target'));
+    if (isNaN(target)) return;
+
+    const isDecimal = target % 1 !== 0;
+    const duration = 1800;
+    const startTime = performance.now();
+
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const currentVal = (target * progress);
+
+      counter.textContent = isDecimal ? currentVal.toFixed(1) : Math.floor(currentVal);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        counter.textContent = isDecimal ? target.toFixed(1) : target;
+      }
+    }
+    requestAnimationFrame(step);
+  }
 
   const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting && !animatedStats) {
-        animatedStats = true;
-        counters.forEach(counter => {
-          const target = parseFloat(counter.getAttribute('data-target'));
-          const isDecimal = target % 1 !== 0;
-          const duration = 1800;
-          const startTime = performance.now();
+      if (entry.isIntersecting) {
+        const cardGlass = entry.target.classList.contains('hero-card-glass') ? entry.target : entry.target.querySelector('.hero-card-glass');
+        if (cardGlass) cardGlass.classList.add('chart-animated');
 
-          function step(now) {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const currentVal = (target * progress);
-            
-            counter.textContent = isDecimal ? currentVal.toFixed(1) : Math.floor(currentVal);
-
-            if (progress < 1) {
-              requestAnimationFrame(step);
-            } else {
-              counter.textContent = isDecimal ? target.toFixed(1) : target;
-            }
-          }
-          requestAnimationFrame(step);
-        });
+        const itemCounters = entry.target.querySelectorAll('.counter-num');
+        itemCounters.forEach(animateCounter);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.15 });
 
-  const statsBar = document.querySelector('.hero-stats-bar');
-  if (statsBar) statsObserver.observe(statsBar);
+  counterContainers.forEach(container => {
+    if (container) statsObserver.observe(container);
+  });
 
   // --------------------------------------------------------------------------
   // 8. FAQ Accordion Toggle Logic
@@ -415,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
       consultForm.classList.add('hidden');
       if (consultSuccess) consultSuccess.classList.remove('hidden');
 
-      const waMsg = encodeURIComponent(`مرحباً مَفَر، أنا ${name} من (${company}). أرغب في البدء واستشارة بخصوص خدمة: ${service}. رقمي: ${phone}`);
+      const waMsg = encodeURIComponent(`مرحباً مَفَـــر، أنا ${name} من (${company}). أرغب في البدء واستشارة بخصوص خدمة: ${service}. رقمي: ${phone}`);
       setTimeout(() => {
         window.open(`https://wa.me/201036076768?text=${waMsg}`, '_blank');
       }, 800);
@@ -430,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const service = id('form-service') ? id('form-service').value : '';
       const msg = id('form-message') ? id('form-message').value : '';
 
-      const waMsg = encodeURIComponent(`مرحباً وكالة مَفَر، أنا ${name}. رقمي: ${phone}. الخدمة المطلوبة: ${service}. التفاصيل: ${msg}`);
+      const waMsg = encodeURIComponent(`مرحباً شركة مَفَـــر، أنا ${name}. رقمي: ${phone}. الخدمة المطلوبة: ${service}. التفاصيل: ${msg}`);
       window.open(`https://wa.me/201036076768?text=${waMsg}`, '_blank');
     });
   }
@@ -508,5 +536,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animateParticles();
   }
+
+  // --------------------------------------------------------------------------
+  // 11. Interactive 3D Card Tilt & 3D Scroll Reveal System
+  // --------------------------------------------------------------------------
+  const tiltCards = document.querySelectorAll('.service-card, .portfolio-card, .hero-card-glass, .compare-card, .stat-card, .about-card-banner');
+
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -9;
+      const rotateY = ((x - centerX) / centerX) * 9;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    });
+  });
+
+  const revealElements = document.querySelectorAll('.service-card, .portfolio-card, .stat-card, .section-header, .about-card-banner, .compare-card, .faq-item');
+
+  revealElements.forEach((el, idx) => {
+    el.classList.add('reveal-3d');
+    el.style.transitionDelay = `${(idx % 4) * 0.1}s`;
+  });
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed-3d');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  revealElements.forEach(el => revealObserver.observe(el));
 
 });

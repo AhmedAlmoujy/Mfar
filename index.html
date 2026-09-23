@@ -2,21 +2,33 @@
 <html lang="ar" dir="rtl" class="dark">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('mfar_theme');
+      if (saved === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      } else if (saved === 'dark') {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   
   <!-- Primary Meta Tags -->
-  <title>مَفَر (MFAR) | الشريك الاستراتيجي لرفع المبيعات وتحقيق النمو الرقمي</title>
-  <meta name="title" content="مَفَر (MFAR) | الشريك الاستراتيجي لرفع المبيعات وتحقيق النمو الرقمي">
-  <meta name="description" content="وكالة مَفَر (MFAR) للتسويق الرقمي والتصميم الإبداعي في السعودية والخليج - حلول متكاملة تدمج تصميم UI/UX، تحسين SEO، تصميم جرافيك، موشن جرافيك، البرمجة، صناعة المحتوى، ميديا باير والسوشيال ميديا.">
+  <title>مَفَـــر (MFAR) | الشريك الاستراتيجي لرفع المبيعات وتحقيق النمو الرقمي</title>
+  <meta name="title" content="مَفَـــر (MFAR) | الشريك الاستراتيجي لرفع المبيعات وتحقيق النمو الرقمي">
+  <meta name="description" content="شركة مَفَـــر (MFAR) للتسويق الرقمي والتصميم الإبداعي في السعودية والخليج - حلول متكاملة تدمج تصميم UI/UX، تحسين SEO، تصميم جرافيك، موشن جرافيك، البرمجة، صناعة المحتوى، ميديا باير والسوشيال ميديا.">
   <meta name="keywords" content="مفر, تسويق رقمي, تصميم UI/UX, تحسين SEO, تصميم جرافيك, موشن جرافيك, البرمجة والتطوير, صناعة المحتوى, ميديا باير, سوشيال ميديا, السعودية, الرياض">
-  <meta name="author" content="مَفَر - MFAR Digital Agency">
+  <meta name="author" content="مَفَـــر - MFAR Digital Agency">
   <meta name="robots" content="index, follow">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mfar.sa/">
-  <meta property="og:title" content="مَفَر (MFAR) | الشريك الاستراتيجي لرفع المبيعات وتحقيق النمو الرقمي">
-  <meta property="og:description" content="وكالة تسويق رقمي وتصميم إبداعي متكاملة في المملكة العربية السعودية والخليج.">
+  <meta property="og:title" content="مَفَـــر (MFAR) | الشريك الاستراتيجي لرفع المبيعات وتحقيق النمو الرقمي">
+  <meta property="og:description" content="شركة تسويق رقمي وتصميم إبداعي متكاملة في المملكة العربية السعودية والخليج.">
   <meta property="og:image" content="assets/images/logo-transparent.png">
 
   <!-- Favicon -->
@@ -36,7 +48,7 @@
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "مَفَر للتسويق الرقمي والتصميم - MFAR Digital Agency",
+    "name": "مَفَـــر للتسويق الرقمي والتصميم - MFAR Digital Agency",
     "image": "assets/images/logo-transparent.png",
     "@id": "https://mfar.sa/#organization",
     "url": "https://mfar.sa/",
@@ -52,7 +64,7 @@
       "latitude": 24.7136,
       "longitude": 46.6753
     },
-    "description": "وكالة تسويق رقمي وتصميم إبداعي في المملكة العربية السعودية تقدم خدمات UI/UX، SEO، تصميم جرافيك، موشن جرافيك، برمجة، صناعة محتوى، ميديا باير وسوشيال ميديا."
+    "description": "شركة تسويق رقمي وتصميم إبداعي في المملكة العربية السعودية تقدم خدمات UI/UX، SEO، تصميم جرافيك، موشن جرافيك، برمجة، صناعة محتوى، ميديا باير وسوشيال ميديا."
   }
   </script>
 </head>
@@ -74,7 +86,7 @@
       <nav class="nav-glass">
         <!-- Logo -->
         <a href="#hero" class="brand-logo" aria-label="الرئيسية - مفر">
-          <img src="assets/images/logo-transparent.png" alt="شعار مفر - MFAR Digital Agency" class="logo-img">
+          <img src="assets/images/logo-transparent.png" alt="شعار مَفَـــر - MFAR Digital Agency" class="logo-img">
           <span class="logo-accent-glow"></span>
         </a>
 
@@ -205,9 +217,9 @@
           <!-- Mobile / Quick Menu Trigger -->
           <button id="mobile-menu-trigger" class="btn-icon hidden-desktop" aria-label="فتح القائمة">
             <svg class="menu-icon-svg" viewBox="0 0 24 24" width="24" height="24">
-              <rect x="3" y="5.5" width="18" height="2.2" rx="1.1" fill="#ffffff" class="menu-bar"></rect>
-              <rect x="3" y="11" width="18" height="2.2" rx="1.1" fill="#ffffff" class="menu-bar"></rect>
-              <rect x="3" y="16.5" width="18" height="2.2" rx="1.1" fill="#ffffff" class="menu-bar"></rect>
+              <rect x="3" y="5.5" width="18" height="2.2" rx="1.1" fill="currentColor" class="menu-bar"></rect>
+              <rect x="3" y="11" width="18" height="2.2" rx="1.1" fill="currentColor" class="menu-bar"></rect>
+              <rect x="3" y="16.5" width="18" height="2.2" rx="1.1" fill="currentColor" class="menu-bar"></rect>
             </svg>
           </button>
         </div>
@@ -221,7 +233,7 @@
     <div class="drawer-content">
       <div class="drawer-header">
         <a href="#hero" class="drawer-logo" aria-label="الرئيسية - مفر">
-          <img src="assets/images/logo-transparent.png" alt="شعار مفر" class="logo-img-sm">
+          <img src="assets/images/logo-transparent.png" alt="شعار مَفَـــر" class="logo-img-sm">
         </a>
         <button id="close-drawer" class="btn-icon drawer-close-btn" aria-label="إغلاق القائمة">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -369,17 +381,16 @@
         <div class="hero-text-col">
           <div class="badge-growth">
             <span class="pulse-dot"></span>
-            <span>وكالة تسويق رقمي وتصميم إبداعي متكاملة</span>
+            <span>شركة تسويق رقمي وتصميم إبداعي متكاملة</span>
           </div>
 
           <h1 class="hero-title kashida-title">
-            <span class="brand-name-accent">مَفَر (MFAR)</span><br>
-            <span class="highlight-gradient">نجمك حين يضيع الاتجاه</span><br class="hero-br-desktop">
-            <span class="hero-subtext">لرفع المبيعات وتحقيق النمو الرقمي</span>
+            <span class="brand-name-accent">مَفَـــر (MFAR)</span><br>
+            <span class="highlight-gradient">نقطة تحوّلك الجذرية نحو حضور رقمي حقيقي ومبيعات أقوى</span>
           </h1>
 
           <p class="hero-description thmanyah-body">
-            نساعد الشركات والعلامات التجارية في المملكة العربية السعودية والخليج على التوسع وتحقيق عوائد استثنائية من خلال دمج 8 خدمات تخصصية متكاملة تحت استراتيجية موحدة وفريق احترافي موحد.
+            نساعد الشركات وأصحاب العلامات التجارية على التوسع وتحقيق عوائد استثنائية، من خلال فهم احتياجاتهم ودراسة تحدياتهم، وتحديد نقاط الضعف وتحويلها إلى فرص للنمو الحقيقي، بدمج 8 خدمات تخصصية متكاملة أو ما يناسب استراتيجيتهم ضمن استراتيجية موحّدة وفريق احترافي واحد.
           </p>
 
           <div class="hero-actions">
@@ -402,7 +413,11 @@
           <div class="hero-trust">
             <div class="trust-item">
               <svg class="trust-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-              <span>منظومة متكاملة تضم 8 تخصصات سحابية</span>
+              <span>تخصصات متكاملة، تحت رؤية واحدة</span>
+            </div>
+            <div class="trust-item">
+              <svg class="trust-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <span>نتائج قابلة للقياس، ونمو أكثر كفاءة</span>
             </div>
             <div class="trust-item">
               <svg class="trust-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -411,7 +426,7 @@
           </div>
         </div>
 
-        <!-- Cosmic Interactive Graphic Card with 3D Mascot & Logo Arrow Animation -->
+        <!-- Dynamic Data Growth Arrow Banner Box -->
         <div class="hero-visual-col">
           <div class="hero-card-glass">
             
@@ -424,68 +439,83 @@
 
             <div class="card-header-flex">
               <div class="brand-pill">
-                <img src="assets/images/logo-icon.png" alt="أيقونة مفر" class="icon-mark hero-logo-spin">
-                <span>منظومة مَفَر للنمو الرقمي</span>
+                <img src="assets/images/logo-icon.png" alt="أيقونة مَفَـــر" class="icon-mark hero-logo-spin">
+                <span>منظومة مَفَـــر للنمو الرقمي</span>
               </div>
-              <span class="status-badge">مباشر • Live</span>
+              <span class="status-badge">مباشر •  نمو المبيعات</span>
             </div>
 
-            <!-- Animated 3D Mascot & Glowing Logo Arrow Graphic Container -->
+            <!-- Stock Market Style Fluctuating & Rising Arrow Chart Container (Clean, zero text obstruction) -->
             <div class="arrow-visual-box cosmic-mascot-box">
-              <svg class="hero-mascot-svg" viewBox="0 0 360 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="hero-mascot-svg" viewBox="0 0 370 240" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <linearGradient id="mascotGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#00D2FF"/>
-                    <stop offset="50%" stop-color="#0084FF"/>
-                    <stop offset="100%" stop-color="#0052CC"/>
+                  <linearGradient id="growthAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#00D2FF" stop-opacity="0.45"/>
+                    <stop offset="50%" stop-color="#0084FF" stop-opacity="0.2"/>
+                    <stop offset="100%" stop-color="#0052CC" stop-opacity="0.0"/>
                   </linearGradient>
-                  <linearGradient id="mascotGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#FF6B00"/>
-                    <stop offset="100%" stop-color="#FF9E00"/>
+                  <linearGradient id="growthLineGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#0084FF"/>
+                    <stop offset="30%" stop-color="#00D2FF"/>
+                    <stop offset="55%" stop-color="#F59E0B"/>
+                    <stop offset="80%" stop-color="#10B981"/>
+                    <stop offset="100%" stop-color="#34D399"/>
                   </linearGradient>
-                  <filter id="heroGlow" x="-30%" y="-30%" width="160%" height="160%">
-                    <feGaussianBlur stdDeviation="10" result="blur"/>
+                  <filter id="arrowGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="blur"/>
                     <feComposite in="SourceGraphic" in2="blur" operator="over"/>
                   </filter>
                 </defs>
 
-                <!-- Ascending Dynamic Arrow Curve -->
-                <path d="M 20 220 Q 140 200, 200 130 T 330 35 L 330 220 Z" fill="rgba(0,132,255,0.1)"/>
-                <path d="M 20 220 Q 140 200, 200 130 T 330 35" stroke="url(#mascotGrad1)" stroke-width="4" stroke-linecap="round" filter="url(#heroGlow)"/>
+                <!-- Background Financial Data Grid Lines -->
+                <line x1="20" y1="50" x2="350" y2="50" stroke="rgba(255,255,255,0.06)" stroke-dasharray="4 4"/>
+                <line x1="20" y1="100" x2="350" y2="100" stroke="rgba(255,255,255,0.06)" stroke-dasharray="4 4"/>
+                <line x1="20" y1="150" x2="350" y2="150" stroke="rgba(255,255,255,0.06)" stroke-dasharray="4 4"/>
+                <line x1="20" y1="205" x2="350" y2="205" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
 
-                <!-- Glowing Pulse Pointer -->
-                <circle cx="330" cy="35" r="7" fill="#00D2FF" filter="url(#heroGlow)"/>
-                <circle cx="330" cy="35" r="15" fill="#00D2FF" opacity="0.3" class="ping-circle"/>
+                <!-- Baseline Indicator Labels -->
+                <text x="20" y="222" font-size="10.5" fill="#64748B" font-family="'Thmanyah Sans', sans-serif">0% نقطة البداية</text>
+                <text x="350" y="222" text-anchor="end" font-size="10.5" fill="#10B981" font-weight="700" font-family="'Thmanyah Sans', sans-serif">أعلى نقطة نمو ↗</text>
 
-                <!-- 3D Floating Astronaut & Logo Arrow Group -->
-                <g class="floating-mascot-element">
-                  <!-- Helmet Outer Ring -->
-                  <circle cx="180" cy="115" r="48" fill="#06101E" stroke="url(#mascotGrad1)" stroke-width="3" filter="url(#heroGlow)"/>
-                  <ellipse cx="180" cy="115" rx="40" ry="34" fill="url(#mascotGrad1)" opacity="0.85"/>
-                  <ellipse cx="168" cy="103" rx="14" ry="8" fill="#ffffff" opacity="0.4"/>
-                  
-                  <!-- Glowing Logo Arrow inside Character Visor -->
-                  <path d="M162 128 L195 95 M195 95 H172 M195 95 V118" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" class="visor-arrow-pulse"/>
-                  
-                  <!-- Character Suit Shoulder -->
-                  <path d="M135 168 Q180 148 225 168 L232 195 Q180 215 128 195 Z" fill="#0D223D" stroke="url(#mascotGrad1)" stroke-width="2"/>
-                </g>
+                <!-- Stock Market Ascending & Fluctuating Area Fill -->
+                <path id="animated-growth-area" d="M 20 205 C 50 170, 75 145, 105 155 C 135 165, 150 190, 180 160 C 210 130, 235 90, 265 115 C 295 140, 315 50, 345 28 L 345 205 L 20 205 Z" fill="url(#growthAreaGrad)"/>
+                
+                <!-- Stock Market Ticker Curve (Start 0 -> Rise -> Dip -> Surge -> Dip -> Continuous Rocket Surge) -->
+                <path id="animated-growth-path" d="M 20 205 C 50 170, 75 145, 105 155 C 135 165, 150 190, 180 160 C 210 130, 235 90, 265 115 C 295 140, 315 50, 345 28" stroke="url(#growthLineGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#arrowGlow)"/>
 
-                <!-- Floating Rocket / Star Particles -->
-                <g class="floating-stars">
-                  <polygon points="60,60 63,68 71,71 63,74 60,82 57,74 49,71 57,68" fill="#00D2FF" opacity="0.7"/>
-                  <polygon points="290,140 292,145 297,147 292,149 290,154 288,149 283,147 288,145" fill="#FF9E00" opacity="0.8"/>
+                <!-- Stock Ticker Data Nodes along Path -->
+                <circle cx="20" cy="205" r="5" fill="#0084FF"/>
+                <circle cx="105" cy="155" r="5" fill="#00D2FF"/>
+                <circle cx="145" cy="178" r="4.5" fill="#EF4444" filter="url(#arrowGlow)"/>
+                <circle cx="195" cy="115" r="5.5" fill="#00D2FF" filter="url(#arrowGlow)"/>
+                <circle cx="245" cy="120" r="4.5" fill="#F59E0B" filter="url(#arrowGlow)"/>
+
+                <!-- Upward Stock Breakout Arrow Head (Crisp, High-Visibility, Pulsing) -->
+                <g id="animated-arrow-head" class="pulse-arrow-head" transform="translate(345, 28)" filter="url(#arrowGlow)">
+                  <circle cx="0" cy="0" r="15" fill="#34D399" opacity="0.35" class="ping-circle"/>
+                  <circle cx="0" cy="0" r="6.5" fill="#34D399"/>
+                  <!-- Arrow wings pointing 45deg up-right -->
+                  <path d="M -18 3 L 1 -2 L -2 17" stroke="#34D399" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="1" y1="-2" x2="-14" y2="13" stroke="#34D399" stroke-width="4.5" stroke-linecap="round"/>
                 </g>
               </svg>
+            </div>
 
-              <!-- Dynamic Metrics Overlay -->
-              <div class="floating-stat stat-1">
-                <span class="stat-label">العائد الإعلاني ROAS</span>
-                <span class="stat-value text-emerald">+480%</span>
+            <!-- Dynamic Metrics Bar (Clean, Unobtrusive, Positioned Below the Arrow) -->
+            <div class="hero-chart-metrics-row">
+              <div class="chart-metric-item">
+                <span class="cm-label">العائد الإعلاني ROAS</span>
+                <span class="cm-value text-emerald">+<span class="counter-num" data-target="480">0</span>%</span>
               </div>
-              <div class="floating-stat stat-2">
-                <span class="stat-label">نمو المبيعات ↗</span>
-                <span class="stat-value text-cyan">3.4X</span>
+              <div class="cm-divider"></div>
+              <div class="chart-metric-item">
+                <span class="cm-label">نمو المبيعات الصافي ↗</span>
+                <span class="cm-value text-cyan"><span class="counter-num" data-target="3.4">0</span>X</span>
+              </div>
+              <div class="cm-divider"></div>
+              <div class="chart-metric-item">
+                <span class="cm-label">تكلفة الاكتساب CPA</span>
+                <span class="cm-value text-amber">-<span class="counter-num" data-target="45">0</span>%</span>
               </div>
             </div>
 
@@ -559,7 +589,7 @@
             منظومة رقمية إبداعية تضع <span class="highlight-gradient">علامتك التجارية في الصدارة</span>
           </h2>
           <p class="section-subtitle thmanyah-body text-slate-300">
-            تأسست وكالة مَفَر (MFAR) لتقديم حلول تسويقية وتصميمية وتطويرية متكاملة للشركات والمتاجر في السوق السعودي والخليجي. نحن لا نقدم خدمات منفصلة، بل نسخر رؤية استراتيجية شمولية تجمع بين التصميم المبتكر، البرمجة السريعة، تحسين محركات البحث، وتنمية المبيعات المباشرة.
+            تأسست شركة مَفَـــر (MFAR) لتقديم حلول تسويقية وتصميمية وتطويرية متكاملة للشركات والمتاجر في السوق السعودي والخليجي. نحن لا نقدم خدمات منفصلة، بل نسخر رؤية استراتيجية شمولية تجمع بين التصميم المبتكر، البرمجة السريعة، تحسين محركات البحث، وتنمية المبيعات المباشرة.
           </p>
 
           <div class="about-features-list">
@@ -853,10 +883,10 @@
       <div class="section-header text-center">
         <span class="section-tag">أعمالنا وإنجازاتنا</span>
         <h2 class="section-title thmanyah-heading">
-          نماذج من <span class="highlight-gradient">مشاريع ونجاحات مَفَر</span>
+          نماذج من <span class="highlight-gradient">مشاريع ونجاحات مَفَـــر</span>
         </h2>
         <p class="section-subtitle thmanyah-body">
-          أمثلة واقعية لعقود ومشاريع نفذها فريق مَفَر عبر الأقسام التخصصية المختلفة.
+          أمثلة واقعية لعقود ومشاريع نفذها فريق مَفَـــر عبر الأقسام التخصصية المختلفة.
         </p>
       </div>
 
@@ -926,7 +956,7 @@
       <div class="section-header text-center">
         <span class="section-tag">إجابات ووضوح</span>
         <h2 class="section-title thmanyah-heading">
-          الأسئلة الشائعة حول <span class="highlight-gradient">خدمات وكالة مَفَر</span>
+          الأسئلة الشائعة حول <span class="highlight-gradient">خدمات شركة مَفَـــر</span>
         </h2>
       </div>
 
@@ -934,7 +964,7 @@
         
         <div class="faq-item">
           <button class="faq-trigger">
-            <span>كيف يمكنني البدء في طلب أحد خدمات مَفَر؟</span>
+            <span>كيف يمكنني البدء في طلب أحد خدمات مَفَـــر؟</span>
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-content">
@@ -948,7 +978,7 @@
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-content">
-            <p>نعم، تمتاز وكالة مَفَر بتقديم منظومة موحدة تدمج خدمات تصميم UI/UX، البرمجة، SEO، الميديا باير، السوشيال ميديا وصناعة المحتوى تحت إدارة واحدة تضمن انسجام الأهداف وتوفير الميزانية.</p>
+            <p>نعم، تمتاز شركة مَفَـــر بتقديم منظومة موحدة تدمج خدمات تصميم UI/UX، البرمجة، SEO، الميديا باير، السوشيال ميديا وصناعة المحتوى تحت إدارة واحدة تضمن انسجام الأهداف وتوفير الميزانية.</p>
           </div>
         </div>
 
@@ -1060,10 +1090,10 @@
         <!-- Brand Info -->
         <div class="footer-brand-col">
           <a href="#hero" class="brand-logo">
-            <img src="assets/images/logo-transparent.png" alt="شعار مفر" class="logo-img">
+            <img src="assets/images/logo-transparent.png" alt="شعار مَفَـــر" class="logo-img">
           </a>
           <p class="footer-about thmanyah-body">
-            وكالة مَفَر (MFAR) للتسويق الرقمي والتصميم الإبداعي - نقدم منظومة رقمية شمولية تجمع بين التصميم المبتكر والبرمجة الفائقة وإدارة النمو والتسويق في السعودية والخليج.
+            شركة مَفَـــر (MFAR) للتسويق الرقمي والتصميم الإبداعي - نقدم منظومة رقمية شمولية تجمع بين التصميم المبتكر والبرمجة الفائقة وإدارة النمو والتسويق في السعودية والخليج.
           </p>
 
         </div>
@@ -1109,10 +1139,7 @@
 
       <div class="footer-bottom">
         <p class="copyright">
-          © 2026 جميع الحقوق محفوظة لشركة مَفَر (MFAR Digital Agency).
-        </p>
-        <p class="font-attribution">
-          مصمم باستخدام <strong>عائلة خط ثمانية (Thmanyah Font Family)</strong> لتعزيز الأصالة العربية الرقمية.
+          © 2026 جميع الحقوق محفوظة لشركة مَفَـــر (MFAR Digital Agency).
         </p>
       </div>
     </div>
@@ -1168,7 +1195,7 @@
       
       <div class="modal-header">
         <img src="assets/images/logo-icon.png" alt="مفر" class="modal-logo-icon">
-        <h3 class="modal-title thmanyah-heading">ابدأ مشروعك مع مَفَر</h3>
+        <h3 class="modal-title thmanyah-heading">ابدأ مشروعك مع مَفَـــر</h3>
         <p class="modal-subtitle">أدخل بياناتك وسيقوم المستشار المختص بالتواصل معك مباشرة.</p>
       </div>
 
@@ -1213,7 +1240,7 @@
       <div id="consult-success" class="modal-success hidden text-center py-8">
         <div class="success-icon-wrap">✓</div>
         <h3 class="text-2xl font-bold text-white mb-2">تم إرسال طلبك بنجاح!</h3>
-        <p class="text-slate-300 mb-6">شكراً لك، سيتواصل معك فريق مَفَر قريباً.</p>
+        <p class="text-slate-300 mb-6">شكراً لك، سيتواصل معك فريق مَفَـــر قريباً.</p>
         <button class="btn-secondary close-consult-modal">إغلاق النافذة</button>
       </div>
 
