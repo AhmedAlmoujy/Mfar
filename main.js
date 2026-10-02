@@ -335,45 +335,57 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------------------------------
-  // 7. Verified Statistics & Hero Banner Counter Animation
+  // 7. Verified Statistics & Hero Banner Counter Animation (Re-trigger on scroll)
   // --------------------------------------------------------------------------
-  const counterContainers = document.querySelectorAll('.hero-card-glass, .hero-stats-bar, .hero-section');
+  const counterContainers = document.querySelectorAll('.hero-card-glass, .hero-stats-bar, .hero-section, .portfolio-card, .calc-results');
 
   function animateCounter(counter) {
-    if (counter.dataset.animated === 'true') return;
-    counter.dataset.animated = 'true';
-
     const target = parseFloat(counter.getAttribute('data-target'));
     if (isNaN(target)) return;
 
+    if (counter._counterAnimId) {
+      cancelAnimationFrame(counter._counterAnimId);
+    }
+
     const isDecimal = target % 1 !== 0;
-    const duration = 1800;
+    const duration = 1600;
     const startTime = performance.now();
 
     function step(now) {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const currentVal = (target * progress);
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const currentVal = target * easeProgress;
 
       counter.textContent = isDecimal ? currentVal.toFixed(1) : Math.floor(currentVal);
 
       if (progress < 1) {
-        requestAnimationFrame(step);
+        counter._counterAnimId = requestAnimationFrame(step);
       } else {
         counter.textContent = isDecimal ? target.toFixed(1) : target;
       }
     }
-    requestAnimationFrame(step);
+    counter.textContent = '0';
+    counter._counterAnimId = requestAnimationFrame(step);
+  }
+
+  function resetCounter(counter) {
+    if (counter._counterAnimId) {
+      cancelAnimationFrame(counter._counterAnimId);
+    }
+    counter.textContent = '0';
   }
 
   const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      const itemCounters = entry.target.querySelectorAll('.counter-num');
       if (entry.isIntersecting) {
         const cardGlass = entry.target.classList.contains('hero-card-glass') ? entry.target : entry.target.querySelector('.hero-card-glass');
         if (cardGlass) cardGlass.classList.add('chart-animated');
 
-        const itemCounters = entry.target.querySelectorAll('.counter-num');
         itemCounters.forEach(animateCounter);
+      } else {
+        itemCounters.forEach(resetCounter);
       }
     });
   }, { threshold: 0.15 });
@@ -498,7 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.speedY = Math.random() * 1.4 + 0.6;
         this.speedX = (Math.random() - 0.48) * 0.4;
         this.opacity = Math.random() * 0.5 + 0.25;
-        this.color = Math.random() > 0.45 ? '#00D2FF' : (Math.random() > 0.5 ? '#0084FF' : '#FF9E00');
+        this.color = Math.random() > 0.45 ? '#00D2FF' : (Math.random() > 0.5 ? '#0084FF' : '#34D399');
       }
 
       update() {
