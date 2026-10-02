@@ -439,7 +439,7 @@ html {
 }
 
 body {
-  font-family: 'Thmanyah Sans', sans-serif;
+  font-family: 'Thmanyah Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", system-ui, sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-primary);
   line-height: 1.7;
@@ -722,20 +722,30 @@ html.light .compare-card:hover {
   padding: 0.85rem 1.8rem;
   background: var(--grad-primary);
   color: #ffffff;
-  font-family: 'Thmanyah Sans', sans-serif;
+  font-family: 'Thmanyah Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 700;
   font-size: 1rem;
   border-radius: var(--radius-full);
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(0, 132, 255, 0.35);
-  transition: all var(--transition-fast);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
+  will-change: transform;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 132, 255, 0.55);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 35px rgba(0, 132, 255, 0.55);
+}
+
+.btn-primary:active,
+.btn-whatsapp:active,
+.btn-secondary:active,
+.filter-btn:active {
+  transform: scale(0.96) translateY(0) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  transition: transform 0.1s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .btn-primary:hover .arrow-icon,
@@ -751,21 +761,22 @@ html.light .compare-card:hover {
   padding: 0.85rem 1.8rem;
   background: var(--surface-glass);
   color: var(--text-primary);
-  font-family: 'Thmanyah Sans', sans-serif;
+  font-family: 'Thmanyah Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 700;
   font-size: 1rem;
   border-radius: var(--radius-full);
   border: 1px solid var(--border-glass);
   backdrop-filter: blur(12px);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
+  will-change: transform;
 }
 
 .btn-secondary:hover {
   border-color: var(--brand-blue);
   background: rgba(0, 132, 255, 0.1);
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .btn-whatsapp {
@@ -776,20 +787,21 @@ html.light .compare-card:hover {
   padding: 0.85rem 1.8rem;
   background: var(--grad-emerald);
   color: #ffffff;
-  font-family: 'Thmanyah Sans', sans-serif;
+  font-family: 'Thmanyah Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 700;
   font-size: 1rem;
   border-radius: var(--radius-full);
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
-  transition: all var(--transition-fast);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
+  will-change: transform;
 }
 
 .btn-whatsapp:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.55);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 35px rgba(16, 185, 129, 0.55);
 }
 
 .btn-xl {
