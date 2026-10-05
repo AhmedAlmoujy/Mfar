@@ -1245,8 +1245,8 @@ button.nav-item.dropdown-trigger {
    -------------------------------------------------------------------------- */
 .hero-section {
   position: relative;
-  padding-top: 9.5rem;
-  padding-bottom: 5.5rem;
+  padding-top: 6.75rem;
+  padding-bottom: 2.5rem;
   z-index: 10;
 }
 
@@ -1668,11 +1668,11 @@ html.light .cm-divider {
 
 /* Stats Bar */
 .hero-stats-bar {
-  margin-top: 5rem;
+  margin-top: 0 !important;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 2.25rem 2rem;
+  padding: 1.25rem 2rem;
   background: var(--surface-glass);
   border: 1px solid var(--border-glass);
   backdrop-filter: blur(16px);
@@ -1693,23 +1693,23 @@ html.light .cm-divider {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  font-size: 2.75rem;
+  font-size: 2.35rem;
   font-weight: 900;
   color: var(--text-primary);
   font-family: 'Thmanyah Serif Display', sans-serif;
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .stat-unit {
   color: var(--brand-cyan);
-  font-size: 2rem;
+  font-size: 1.75rem;
   margin-right: 0.2rem;
 }
 
 .stat-title {
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
 }
 
@@ -3568,7 +3568,7 @@ section[id] {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 1rem !important;
     padding: 1.25rem 1rem !important;
-    margin-top: 3.5rem !important;
+    margin-top: 1rem !important;
     border-radius: var(--radius-lg);
   }
 
@@ -4133,43 +4133,43 @@ h1, h2, h3, h4, h5, h6,
 
 .hero-content-center .badge-growth {
   align-self: center;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.15rem;
 }
 
 .hero-content-center .hero-title {
   text-align: center;
   width: 100%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.15rem;
 }
 
 .hero-breakthrough-heading {
   display: block;
-  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-size: clamp(2.2rem, 5.2vw, 3.8rem);
   font-weight: 900;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
   line-height: 1.25;
   letter-spacing: -0.5px;
 }
 
 .hero-subheading-line {
   display: block;
-  font-size: clamp(1.4rem, 3.4vw, 2.3rem);
+  font-size: clamp(1.3rem, 3vw, 2rem);
   font-weight: 700;
   color: var(--text-primary);
   opacity: 0.96;
   line-height: 1.4;
-  margin-top: 0.35rem;
+  margin-top: 0.25rem;
 }
 
 .hero-content-center .hero-description {
   max-width: 820px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.75rem;
   text-align: center;
-  font-size: 1.22rem;
-  line-height: 1.85;
+  font-size: 1.15rem;
+  line-height: 1.8;
   color: var(--text-secondary);
 }
 
@@ -4179,7 +4179,7 @@ h1, h2, h3, h4, h5, h6,
   justify-content: center;
   gap: 1.25rem;
   flex-wrap: wrap;
-  margin-bottom: 3.5rem;
+  margin-bottom: 1.75rem !important;
   width: 100%;
 }
 
