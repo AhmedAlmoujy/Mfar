@@ -628,8 +628,8 @@ html.light .compare-card:hover {
 }
 
 .py-24 {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
 }
 
 .py-20 {
@@ -1245,8 +1245,8 @@ button.nav-item.dropdown-trigger {
    -------------------------------------------------------------------------- */
 .hero-section {
   position: relative;
-  padding-top: 6.75rem;
-  padding-bottom: 2.5rem;
+  padding-top: 5.75rem;
+  padding-bottom: 1.25rem;
   z-index: 10;
 }
 
@@ -1668,7 +1668,7 @@ html.light .cm-divider {
 
 /* Stats Bar */
 .hero-stats-bar {
-  margin-top: 0 !important;
+  margin-top: 0.75rem !important;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -2404,7 +2404,7 @@ html.light .cm-divider {
    16. Footer
    -------------------------------------------------------------------------- */
 .footer-section {
-  padding-top: 5rem;
+  padding-top: 4.5rem;
   padding-bottom: 3rem;
   background: rgba(3, 11, 21, 0.85);
   backdrop-filter: blur(16px);
@@ -2693,9 +2693,17 @@ select {
   cursor: pointer;
 }
 
-.success-icon-wrap {
-  width: 60px;
-  height: 60px;
+/* --------------------------------------------------------------------------
+   Consultation Modal Success State Spacing & Typography
+   -------------------------------------------------------------------------- */
+.modal-success {
+  padding: 1.25rem 0 0.5rem 0;
+  text-align: center;
+}
+
+.modal-success .success-icon-wrap {
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: rgba(16, 185, 129, 0.15);
   color: #34D399;
@@ -2703,7 +2711,31 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1rem auto;
+  margin: 0 auto 1.25rem auto;
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.25);
+}
+
+.modal-success-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.65rem;
+  line-height: 1.35;
+}
+
+.modal-success-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+}
+
+.modal-success .close-consult-modal {
+  min-width: 160px;
+  padding: 0.75rem 2.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 auto;
 }
 
 .hidden { display: none !important; }
@@ -3429,8 +3461,8 @@ section[id] {
 
   /* Hero Section */
   .hero-section {
-    padding-top: 7.25rem;
-    padding-bottom: 3.5rem;
+    padding-top: 5.75rem;
+    padding-bottom: 1.5rem;
   }
 
   .hero-text-col {
@@ -3635,8 +3667,17 @@ section[id] {
 
   /* Section Spacing & Titles */
   .py-24 {
-    padding-top: 3.75rem;
-    padding-bottom: 3.75rem;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  .hero-section {
+    padding-bottom: 1.5rem !important;
+  }
+
+  .footer-section {
+    padding-top: 3rem !important;
+    padding-bottom: 2.25rem !important;
   }
 
   .section-title {
@@ -4048,8 +4089,8 @@ section[id] {
   }
 
   .hero-section {
-    padding-top: 6.5rem;
-    padding-bottom: 2.75rem;
+    padding-top: 5.5rem;
+    padding-bottom: 1.25rem;
   }
 
   .hero-title {
@@ -4133,7 +4174,7 @@ h1, h2, h3, h4, h5, h6,
 
 .hero-content-center .badge-growth {
   align-self: center;
-  margin-bottom: 1.15rem;
+  margin-bottom: 1rem;
 }
 
 .hero-content-center .hero-title {
@@ -4179,13 +4220,23 @@ h1, h2, h3, h4, h5, h6,
   justify-content: center;
   gap: 1.25rem;
   flex-wrap: wrap;
-  margin-bottom: 1.75rem !important;
+  margin-bottom: 2.25rem !important;
   width: 100%;
 }
 
 /* --------------------------------------------------------------------------
    Section 2: About Us (من نحن) - Centered Authority Layout
    -------------------------------------------------------------------------- */
+#about {
+  padding-top: 2rem !important;
+}
+
+@media (max-width: 768px) {
+  #about {
+    padding-top: 1.75rem !important;
+  }
+}
+
 .about-content-center {
   max-width: 920px;
   margin-left: auto;
@@ -4199,7 +4250,7 @@ h1, h2, h3, h4, h5, h6,
 
 .about-content-center .section-tag {
   align-self: center !important;
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 1.15rem !important;
 }
 
 .about-content-center .section-title {
