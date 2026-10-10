@@ -3233,7 +3233,26 @@ select {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3.5rem;
-  align-items: center;
+  align-items: start;
+}
+
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: right;
+  padding-top: 0.5rem;
+}
+
+.contact-info-col .badge-growth {
+  margin-bottom: 1.15rem;
+}
+
+.contact-info-col .cta-title {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.25;
 }
 
 .contact-details-list {
